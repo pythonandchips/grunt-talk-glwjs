@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: 'grunt-talk',
     jshint: {
-      files: ['Gruntfile.js']
+      files: ['Gruntfile.js', 'src/**/*.js']
     }
   });
 
