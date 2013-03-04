@@ -32,8 +32,8 @@ module.exports = function(grunt) {
     },
     watch: {
       test: {
-        files: ['Gruntfile.js', "src/**/*.js",
-                "spec/**/*Spec.js"],
+        files: ['Gruntfile.js', "<%= grunt.config.data.jasmine.src %>",
+                "<%= grunt.config.data.jasmine.options.specs %>"],
         tasks: ['jshint', 'jasmine']
       }
     }
