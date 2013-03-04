@@ -6,6 +6,7 @@
 2. Grunt file
   - adding tasks
   - combining tasks
+  - different environments
   - watch
   - using data from other sources
 
