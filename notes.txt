@@ -1,0 +1,14 @@
+1. Installing grunt.
+  - 3 parts
+  - grunt local
+  - grunt-cli global
+
+2. Grunt file
+  - adding tasks
+  - combining tasks
+  - watch
+  - using data from other sources
+
+3. Own plugins
+  - generating scaffolds
+  - simple example
