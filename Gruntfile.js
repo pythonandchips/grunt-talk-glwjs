@@ -2,6 +2,13 @@
 
 module.exports = function(grunt) {
 
+  var path = require('path');
+  var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+
+  var folderMount = function folderMount(connect, point) {
+    return connect.static(path.resolve(point));
+  };
+
   grunt.initConfig({
     pkg: 'grunt-talk',
     jshint: {
@@ -36,11 +43,31 @@ module.exports = function(grunt) {
                 "<%= grunt.config.data.jasmine.options.specs %>"],
         tasks: ['jshint', 'jasmine']
       }
+    },
+    connect: {
+      livereload: {
+        options: {
+          middleware: function(connect, options) {
+            return [lrSnippet, folderMount(connect, '.')]
+          }
+        }
+      }
+    },
+    // Configuration to be run (and then tested)
+    regarde: {
+      fred: {
+        files: ['html/*.html', 'src/*.js', 'html/*.css'],
+        tasks: ['livereload']
+      }
     }
   });
 
+  grunt.registerTask('whooo', ['livereload-start', 'connect', 'regarde']);
   grunt.registerTask('default', ['jshint', 'jasmine']);
   grunt.registerTask('release', ['jshint', 'clean', 'concat', 'uglify']);
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-livereload');
+  grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-concat');
